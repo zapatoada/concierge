@@ -1,0 +1,75 @@
+.homeBackground {
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: -1;
+    overflow:hidden;
+    float: none;
+    bottom: .001vh;
+    background: 
+    linear-gradient(
+      rgba(255, 255, 255, 0.75), 
+      rgba(255, 255, 255, 0.75)
+    ),
+    url('/images/stephen-poore-677846-unsplash.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.center {
+    position: absolute;
+    text-align: center;
+    top: 50vh;
+    left: 5%;
+}
+
+.eventsBackground {
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: -1;
+    overflow:hidden;
+    float: none;
+    bottom: .001vh;
+    background: 
+    linear-gradient(
+      rgba(255, 255, 255, 0.75), 
+      rgba(255, 255, 255, 0.75)
+    ),
+    url('/images/eric-foster-1278506-unsplash.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.diningBackground {
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: -1;
+    overflow:hidden;
+    float: none;
+    bottom: .001vh;
+    background: 
+    linear-gradient(
+      rgba(255, 255, 255, 0.75), 
+      rgba(255, 255, 255, 0.75)
+    ),
+    url('/images/vimal-natarajan-1355240-unsplash.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.attractionsBackground {
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: -1;
+    overflow:hidden;
+    float: none;
+    bottom: .001vh;
+    background: 
+    linear-gradient(
+      rgba(255, 255, 255, 0.75), 
+      rgba(255, 255, 255, 0.75)
+    ),
+    url('/images/stephen-poore-677854-unsplash.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
