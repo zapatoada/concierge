@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -9,6 +8,7 @@ import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import NaturePeopleIcon from '@material-ui/icons/NaturePeople';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import Typography from '@material-ui/core/Typography';
+import Item from '../Item'
 import "./Bottom.css";
 
 
@@ -20,20 +20,36 @@ const styles = {
     flexGrow: 1,
     maxWidth: 500,
   },
+  page: {
+    marginTop: '5rem'
+  },
+  scroll: {    
+    display: 'flex',
+    justifyContent: 'flex-start',
+    overflow: 'auto',
+    paddingRight: '1rem'
+  },
+  spacer: { 
+    opacity: 0,
+    minWidth: '1px'
+  },
+  pageTitle: {
+    marginBottom: '2rem'
+  }
 };
 
 function TabContainer(props) {
-    return (
-      <Typography component="div">
-        {props.children}
-      </Typography>
-    );
-  }
+  return (
+    <Typography component="div">
+      {props.children}
+    </Typography>
+  );
+}
 
-  TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-  
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 
 class Bottom extends React.Component {
   state = {
@@ -45,45 +61,62 @@ class Bottom extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, items } = this.props;
     const { value } = this.state;
-
+    console.info(items)
 
     return (
-    //   <Paper square className={classes.root}>
+      //   <Paper square className={classes.root}>
 
-    <div className="classes.root">
+      <div className="classes.root">
         <div>
-            {value === 0 && <TabContainer><div className='homeBackground'><div className="center">Item One</div></div></TabContainer>}
-            {value === 1 && <TabContainer><div className='eventsBackground'><div className="center">Item Two</div></div></TabContainer>}
-            {value === 2 && <TabContainer><div className='diningBackground'><div className="center">Item Three</div></div></TabContainer>}
-            {value === 3 && <TabContainer><div className='attractionsBackground'><div className="center">Item Four</div></div></TabContainer>}
+          {value === 0 && <TabContainer><div className='homeBackground'><div className="center">Item One</div></div></TabContainer>}
+          {value === 1 && <TabContainer><div className='eventsBackground'><div className="center">Item Two</div></div></TabContainer>}
+          {value === 2 &&
+            <TabContainer>
+              <div className='diningBackground'>
+                <div className={classes.page}>
+                  <Typography variant="h2" className={classes.pageTitle}>
+                    Dining
+                  </Typography>
+                  <div className={classes.scroll}>
+                    {items.map(p => (
+                      <Item item={p} key={p.rowKey} />
+                    ))}
+                    {/* stupid hack because css is dumb */}
+                    <div className={classes.spacer} />
+                  </div>
+                </div>
+              </div>
+            </TabContainer>}
+          {value === 3 && <TabContainer><div className='attractionsBackground'><div className="center">Item Four</div></div></TabContainer>}
         </div>
 
-        <div style={{position: "fixed", bottom:"0", left:"0", width:"100%", textColor:'ffffff'}}>
+        <div style={{ position: "fixed", bottom: "0", left: "0", width: "100%", textColor: 'ffffff' }}>
 
-            <Tabs
+          <Tabs
             value={this.state.value}
             onChange={this.handleChange}
             fullWidth
             indicatorColor="secondary"
             textColor="secondary"
-            
-            >
+
+          >
             <Tab icon={<CardTravelIcon />} label="YOUR VISIT" />
             <Tab icon={<NewReleasesIcon />} label="SPECIAL EVENTS" />
             <Tab icon={<LocalDiningIcon />} label="DINING" />
             <Tab icon={<NaturePeopleIcon />} label="ATTRACTIONS" />
-            </Tabs>
+          </Tabs>
         </div>
-    </div>
-    //   </Paper>
+      </div>
+      //   </Paper>
     );
   }
 }
 
 Bottom.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
+  items: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default withStyles(styles)(Bottom);
