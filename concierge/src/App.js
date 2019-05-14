@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
 import MenuBar from "./components/MenuBar";
 import Bottom from "./components/Bottom";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';

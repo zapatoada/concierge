@@ -64,9 +64,9 @@ class Bottom extends React.Component {
   render() {
     const { classes, categories } = this.props;
     const { value } = this.state;
-    const dining = categories.filter(p => p.Name == 'My Picks Restaurants')[0];
-    const todo = categories.filter(p => p.Name == 'Things to Do Close By')[0];
-    const museums= categories.filter(p => p.Name == 'Museums')[0];
+    const dining = categories.filter(p => p.Name === 'My Picks Restaurants')[0];
+    const todo = categories.filter(p => p.Name === 'Things to Do Close By')[0];
+    const museums= categories.filter(p => p.Name === 'Museums')[0];
 
 
     return (
