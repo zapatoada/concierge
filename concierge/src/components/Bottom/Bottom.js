@@ -57,13 +57,13 @@ class Bottom extends React.Component {
   };
 
   handleChange = (event, value) => {
+    window.appInsights && window.appInsights.trackPageView(`tab-${value}-${event.target.innerText}`);
     this.setState({ value });
   };
 
   render() {
     const { classes, categories } = this.props;
     const { value } = this.state;
-    console.info(categories);
     const dining = categories.filter(p => p.Name == 'My Picks Restaurants')[0];
     const todo = categories.filter(p => p.Name == 'Things to Do Close By')[0];
     const museums= categories.filter(p => p.Name == 'Museums')[0];

@@ -36,6 +36,32 @@ const styles = theme => ({
 });
 
 class Item extends React.Component {
+
+    constructor() {
+        super(...arguments);
+        this.handleDirectionsClick=this.handleDirectionsClick.bind(this);        
+        this.handleEventsClick=this.handleEventsClick.bind(this);
+        this.handleMenuClick=this.handleMenuClick.bind(this);
+    }
+
+    handleDirectionsClick() {
+        window.appInsights && window.appInsights.trackEvent('directions', {name:this.props.item.name,id: this.props.item.RowKey});
+        window.open(`https://www.google.com/maps/dir//${this.props.item.address}`, "_conc");
+    }
+
+    
+    handleMenuClick() {
+        window.appInsights && window.appInsights.trackEvent('menu', {name:this.props.item.name,id: this.props.item.RowKey});
+        window.open(this.props.item.menu, "_conc");
+    }
+
+    
+    handleEventsClick() {
+        window.appInsights && window.appInsights.trackEvent('events', {name:this.props.item.name,id: this.props.item.RowKey});
+        window.open(this.props.item.calendar, "_conc");
+    }
+   
+
     render() {
         const { classes, item } = this.props;
         return <Card className={classes.card}>
@@ -52,13 +78,13 @@ class Item extends React.Component {
                 <Typography variant="h6" className={classes.description}>{item.notes}</Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-                <Button color="primary" className="button">
+                {item.address && <Button color="primary" className="button" onClick={this.handleDirectionsClick}>
                     Directions
-                </Button>
-                {item.menu && <Button size="large" color="primary" className="button">
+                </Button>}
+                {item.menu && <Button size="large" color="primary" className="button" onClick={this.handleMenuClick}>
                     Menu
                 </Button>}
-                {item.calendar && <Button size="large" color="primary" className="button">
+                {item.calendar && <Button size="large" color="primary" className="button" onClick={this.handleEventsClick}>
                     Events
                 </Button>}
             </CardActions>
