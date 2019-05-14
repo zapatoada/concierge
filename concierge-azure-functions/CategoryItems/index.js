@@ -1,6 +1,5 @@
 // Reference to the Azure Storage SDK
 const azure = require('azure-storage');
-const axios = require('axios');
 
 const tableService = azure.createTableService();
 const tableName = "items";

@@ -9,23 +9,23 @@ import './App.css';
 const theme = createMuiTheme({
   palette: {
     text: {
-      primary: "#616161",
-      secondary: "#9E9E9E",
-      disabled: "#E0E0E0",
-      hint: "#E0E0E0",
+      primary: "#404040",
+      secondary: "#737373",
+      disabled: "#8c8c8c",
+      hint: "#8c8c8c",
     }
   }
 });
 
 class App extends Component {
   state = {
-    dining: []
+    categories: []
   }
 
   componentDidMount() {
-    axios.get('https://bradshaw-dev.azurewebsites.net/api/CategoryItems?category=0')
+    axios.get('https://bradshaw-dev.azurewebsites.net/api/GetAll')
       .then(d => {
-        this.setState({ dining: d.data });
+        this.setState({ categories: d.data });
       });
   }
 
@@ -47,7 +47,7 @@ class App extends Component {
         <header className="App-header">
           <MuiThemeProvider theme={theme}>
             <MenuBar />
-            <Bottom items={this.state.dining} />
+            <Bottom categories={this.state.categories} />
           </MuiThemeProvider>
         </header>
       </div>

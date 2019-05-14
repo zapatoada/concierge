@@ -23,13 +23,13 @@ const styles = {
   page: {
     marginTop: '5rem'
   },
-  scroll: {    
+  scroll: {
     display: 'flex',
     justifyContent: 'flex-start',
     overflow: 'auto',
     paddingRight: '1rem'
   },
-  spacer: { 
+  spacer: {
     opacity: 0,
     minWidth: '1px'
   },
@@ -61,26 +61,55 @@ class Bottom extends React.Component {
   };
 
   render() {
-    const { classes, items } = this.props;
+    const { classes, categories } = this.props;
     const { value } = this.state;
-    console.info(items)
+    console.info(categories);
+    const dining = categories.filter(p => p.Name == 'My Picks Restaurants')[0];
+    const todo = categories.filter(p => p.Name == 'Things to Do Close By')[0];
+    const museums= categories.filter(p => p.Name == 'Museums')[0];
+
 
     return (
       //   <Paper square className={classes.root}>
 
       <div className="classes.root">
         <div>
-          {value === 0 && <TabContainer><div className='homeBackground'><div className="center">Item One</div></div></TabContainer>}
-          {value === 1 && <TabContainer><div className='eventsBackground'><div className="center">Item Two</div></div></TabContainer>}
+          {value === 0 && <TabContainer><div className='homeBackground'>
+            <div className={classes.page}>
+              <Typography variant="h3" className={classes.pageTitle}>
+                Welcome to Richmond, Mr. Agelasto
+            </Typography>
+            </div>
+            <Typography variant="h4" className={classes.pageTitle}>
+              Enjoy your stay!
+            </Typography>
+          </div>
+          </TabContainer>}
+          {value === 1 && <TabContainer>
+            <div className='eventsBackground'>
+              <div className={classes.page}>
+                <Typography variant="h3" className={classes.pageTitle}>
+                  Things To Do Close By
+              </Typography>
+                <div className={classes.scroll}>
+                  {todo && todo.items && todo.items.map(p => (
+                    <Item item={p} key={p.rowKey} />
+                  ))}
+                  {/* stupid hack because css is dumb */}
+                  <div className={classes.spacer} />
+                </div>
+              </div>
+            </div>
+          </TabContainer>}
           {value === 2 &&
             <TabContainer>
               <div className='diningBackground'>
                 <div className={classes.page}>
-                  <Typography variant="h2" className={classes.pageTitle}>
-                    Dining
+                  <Typography variant="h3" className={classes.pageTitle}>
+                    My Picks
                   </Typography>
                   <div className={classes.scroll}>
-                    {items.map(p => (
+                    {dining && dining.items && dining.items.map(p => (
                       <Item item={p} key={p.rowKey} />
                     ))}
                     {/* stupid hack because css is dumb */}
@@ -89,7 +118,23 @@ class Bottom extends React.Component {
                 </div>
               </div>
             </TabContainer>}
-          {value === 3 && <TabContainer><div className='attractionsBackground'><div className="center">Item Four</div></div></TabContainer>}
+          {value === 3 &&
+            <TabContainer>
+              <div className='attractionsBackground'>
+              <div className={classes.page}>
+              <Typography variant="h3" className={classes.pageTitle}>
+                Museums
+              </Typography>
+              <div className={classes.scroll}>
+                {museums && museums.items && museums.items.map(p => (
+                  <Item item={p} key={p.rowKey} />
+                ))}
+                {/* stupid hack because css is dumb */}
+                <div className={classes.spacer} />
+              </div>
+            </div>
+              </div>
+            </TabContainer>}
         </div>
 
         <div style={{ position: "fixed", bottom: "0", left: "0", width: "100%", textColor: 'ffffff' }}>
@@ -103,9 +148,9 @@ class Bottom extends React.Component {
 
           >
             <Tab icon={<CardTravelIcon />} label="YOUR VISIT" />
-            <Tab icon={<NewReleasesIcon />} label="SPECIAL EVENTS" />
-            <Tab icon={<LocalDiningIcon />} label="DINING" />
-            <Tab icon={<NaturePeopleIcon />} label="ATTRACTIONS" />
+            <Tab icon={<NewReleasesIcon />} label="THINGS TO DO CLOSE BY" />
+            <Tab icon={<LocalDiningIcon />} label="MY PICKS RESTAURANTS" />
+            <Tab icon={<NaturePeopleIcon />} label="MUSEUMS" />
           </Tabs>
         </div>
       </div>

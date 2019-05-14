@@ -27,6 +27,11 @@ const styles = theme => ({
     },
     button: {
         fontSize: '1rem'
+    },
+    description: {
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        maxHeight: '220px'
     }
 });
 
@@ -44,15 +49,18 @@ class Item extends React.Component {
                 <Typography variant="h4" gutterBottom="1">
                     {item.name}
                 </Typography>
-                <Typography variant="h6">{item.notes}</Typography>
+                <Typography variant="h6" className={classes.description}>{item.notes}</Typography>
             </CardContent>
             <CardActions className={classes.actions}>
                 <Button color="primary" className="button">
                     Directions
                 </Button>
-                <Button size="large" color="primary" className="button">
+                {item.menu && <Button size="large" color="primary" className="button">
                     Menu
-                </Button>
+                </Button>}
+                {item.calendar && <Button size="large" color="primary" className="button">
+                    Events
+                </Button>}
             </CardActions>
         </Card>;
     }
