@@ -13,8 +13,12 @@ const theme = createMuiTheme({
       disabled: "#8c8c8c",
       hint: "#8c8c8c",
     }
+  },
+  typography: {
+    useNextVariants:true
   }
 });
+
 
 class App extends Component {
   state = {

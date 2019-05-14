@@ -71,10 +71,10 @@ class Item extends React.Component {
                 title={item.name}
             />
             <CardContent>
-                <Typography variant="h4" gutterBottom="1">
+                <Typography variant="h4" gutterBottom={true}>
                     {item.name}
                 </Typography>
-                <Typography variant="h6" className={classes.description}>{item.notes}</Typography>
+                <Typography variant="subtitle1" className={classes.description}>{item.notes}</Typography>
             </CardContent>
             <CardActions className={classes.actions}>
                 {item.address && <Button color="primary" className="button" onClick={this.handleDirectionsClick}>

@@ -40,7 +40,7 @@ const styles = {
 
 function TabContainer(props) {
   return (
-    <Typography component="div">
+    <Typography component="div" variant="body2">
       {props.children}
     </Typography>
   );
@@ -93,7 +93,7 @@ class Bottom extends React.Component {
               </Typography>
                 <div className={classes.scroll}>
                   {todo && todo.items && todo.items.map(p => (
-                    <Item item={p} key={p.rowKey} />
+                    <Item item={p} key={p.RowKey} />
                   ))}
                   {/* stupid hack because css is dumb */}
                   <div className={classes.spacer} />
@@ -110,7 +110,7 @@ class Bottom extends React.Component {
                   </Typography>
                   <div className={classes.scroll}>
                     {dining && dining.items && dining.items.map(p => (
-                      <Item item={p} key={p.rowKey} />
+                      <Item item={p} key={p.RowKey} />
                     ))}
                     {/* stupid hack because css is dumb */}
                     <div className={classes.spacer} />
@@ -122,12 +122,12 @@ class Bottom extends React.Component {
             <TabContainer>
               <div className='attractionsBackground'>
               <div className={classes.page}>
-              <Typography variant="h3" className={classes.pageTitle}>
+              <Typography variant="h4" className={classes.pageTitle}>
                 Museums
               </Typography>
               <div className={classes.scroll}>
                 {museums && museums.items && museums.items.map(p => (
-                  <Item item={p} key={p.rowKey} />
+                  <Item item={p} key={p.RowKey} />
                 ))}
                 {/* stupid hack because css is dumb */}
                 <div className={classes.spacer} />
@@ -142,7 +142,7 @@ class Bottom extends React.Component {
           <Tabs
             value={this.state.value}
             onChange={this.handleChange}
-            fullWidth
+            varient="fullWidth"
             indicatorColor="secondary"
             textColor="secondary"
 
