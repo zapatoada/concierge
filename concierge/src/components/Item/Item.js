@@ -45,7 +45,7 @@ class Item extends React.Component {
 
     handleDirectionsClick() {
         window.appInsights && window.appInsights.trackEvent('directions', {name:this.props.item.name,id: this.props.item.RowKey});
-        window.open(`https://www.google.com/maps/dir//${this.props.item.address}`, "_conc");
+        window.open(`https://www.google.com/maps/dir/${this.props.startAddress}/${this.props.item.address}`, "_conc");
     }
 
     

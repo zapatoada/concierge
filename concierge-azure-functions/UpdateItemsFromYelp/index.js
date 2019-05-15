@@ -32,7 +32,7 @@ function updateFromYelp(i) {
 }
 
 module.exports = function (context, myTimer) {
-    tableService.createTableIfNotExists(tableName, (error, result) => {
+    /*tableService.createTableIfNotExists(tableName, (error, result) => {
         if (error) {
             context.error(error);
             context.res = {
@@ -47,5 +47,5 @@ module.exports = function (context, myTimer) {
                 updateFromYelp(items.length-1);
             });
         }
-    });
+    });*/
 };

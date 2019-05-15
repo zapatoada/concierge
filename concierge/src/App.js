@@ -22,13 +22,21 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    categories: []
+    categories: [],
+    booking: {
+      GuestName: "Guest",
+      Checkout: new Date()
+    },
+    property: {
+      Address: ""
+    }
   }
 
   componentDidMount() {
-    axios.get('https://bradshaw-dev.azurewebsites.net/api/GetAll')
+    const propertyid = new URLSearchParams(window.location.search).get("p") || "0";
+    axios.get(`https://bradshaw-dev.azurewebsites.net/api/GetAll?p=${propertyid}`)
       .then(d => {
-        this.setState({ categories: d.data });
+        this.setState(d.data);
       });
   }
 
@@ -50,7 +58,7 @@ class App extends Component {
         <header className="App-header">
           <MuiThemeProvider theme={theme}>
             <MenuBar />
-            <Bottom categories={this.state.categories} />
+            <Bottom {...this.state} />
           </MuiThemeProvider>
         </header>
       </div>

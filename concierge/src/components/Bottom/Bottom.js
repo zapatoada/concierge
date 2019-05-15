@@ -79,9 +79,12 @@ class Bottom extends React.Component {
   };
 
   render() {
-    const { classes, categories } = this.props;
+    const { classes, categories, property, booking } = this.props;
     const { value } = this.state;
     const currentTab = value > 0 ? categories[value - 1] : null;
+
+    const dCheckout = new Date(booking.Checkout),
+    checkout = `${dCheckout.toLocaleDateString()} ${dCheckout.toLocaleTimeString()}`;
 
     return (
       <div className="classes.root">
@@ -89,11 +92,14 @@ class Bottom extends React.Component {
           {value === 0 && <TabContainer><div className='homeBackground'>
             <div className={classes.page}>
               <Typography variant="h3" className={classes.pageTitle}>
-                Welcome to Richmond, Mr. Agelasto
+                Welcome to Richmond, {booking.GuestName}
             </Typography>
             </div>
             <Typography variant="h4" className={classes.pageTitle}>
               Enjoy your stay!
+            </Typography>
+            <Typography variant="h4" className={classes.pageTitle}>
+              Checkout: {checkout}
             </Typography>
           </div>
           </TabContainer>}
@@ -106,7 +112,7 @@ class Bottom extends React.Component {
                 </Typography>
                 <div className={`${classes.scroll} scroll`}>
                   {currentTab.items && currentTab.items.map(p => (
-                    <Item item={p} ke741y={p.RowKey} />
+                    <Item item={p} key={p.RowKey} startAddress={property.Address} />
                   ))}
                   <div className={classes.spacer} />
                 </div>
@@ -127,7 +133,7 @@ class Bottom extends React.Component {
 
             <Tab icon={<CardTravelIcon />} label="YOUR VISIT" />
             {categories.map(c =>
-              <Tab icon={categoryIconMap[c.Name.toLowerCase()]} label={c.Name.toUpperCase()} key={c.RowKey} />
+              <Tab icon={categoryIconMap[c.Name.toLowerCase()]} label={c.Name.toUpperCase()} key={c.RowKey}  />
             )}
           </Tabs>
         </div>
